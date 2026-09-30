@@ -1,6 +1,8 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb";
+console.log("DB URL:", process.env.BETTER_AUTH_DB_URL);
+
 const client = new MongoClient(process.env.BETTER_AUTH_DB_URL);
 const db = client.db();
 
