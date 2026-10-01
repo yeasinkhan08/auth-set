@@ -1,6 +1,6 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -29,6 +29,18 @@ const SignUpPage = () => {
     console.log(resData, error);
   };
 
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+
+    console.log("after google sihn in", resData);
+  };
+  const handleGithubSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "github",
+    });
+  };
   return (
     <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
       <TextField isRequired name="name">
@@ -87,10 +99,12 @@ const SignUpPage = () => {
 
       <div className="flex gap-2">
         <Button type="submit">Submit</Button>
-
         <Button type="reset" variant="secondary">
           Reset
         </Button>
+        or
+        <Button onClick={handleGoogleSignIn}>Sign in with google</Button>
+        <button onClick={handleGithubSignIn}></button>
       </div>
     </Form>
   );
